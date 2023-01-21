@@ -1,0 +1,3 @@
+C:/Users/Phuongtoe/OneDrive/Desktop/code/realsdl/CMakeFiles/nerd.dir
+C:/Users/Phuongtoe/OneDrive/Desktop/code/realsdl/CMakeFiles/edit_cache.dir
+C:/Users/Phuongtoe/OneDrive/Desktop/code/realsdl/CMakeFiles/rebuild_cache.dir

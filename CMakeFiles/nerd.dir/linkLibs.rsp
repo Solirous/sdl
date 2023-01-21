@@ -1,0 +1,1 @@
+  -LC:/Users/Phuongtoe/OneDrive/Desktop/code/realsdl/SDL/include/SDL2  SDL/lib/libSDL2.a -LC:/Users/Phuongtoe/OneDrive/Desktop/code/realsdl/SDL/lib/ -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
