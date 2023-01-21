@@ -91,7 +91,7 @@ nerd_EXTERNAL_OBJECTS =
 
 nerd.exe: CMakeFiles/nerd.dir/main.cpp.obj
 nerd.exe: CMakeFiles/nerd.dir/build.make
-nerd.exe: SDL/lib/libSDL2.a
+nerd.exe: SDL/lib/libSDL2.dll.a
 nerd.exe: CMakeFiles/nerd.dir/linkLibs.rsp
 nerd.exe: CMakeFiles/nerd.dir/objects1
 nerd.exe: CMakeFiles/nerd.dir/link.txt
