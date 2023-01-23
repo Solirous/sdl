@@ -1,17 +1,36 @@
 #define SDL_MAIN_HANDLED
 #include <iostream>
 #include "SDL/include/SDL2/SDL.h"
+#include <string>
 const int screenWidth=640;
 const int screenHeight=480;
+
+enum KeyPressedSurface
+{
+    KEY_PRESS_SURFACE_DEFAULT,
+    KEY_PRESS_SURFACE_UP,
+    KEY_PRESS_SURFACE_DOWN,
+    KEY_PRESS_SURFACE_LEFT,
+    KEY_PRESS_SURFACE_RIGHT,
+    KEY_PRESS_SURFACE_TOTAL
+};
+
+
 
 SDL_Window* window=NULL;
 SDL_Surface* screenSurface=NULL;
 SDL_Surface* gHelloWorld = NULL;
+SDL_Surface* gKeyPressedSurfaces[KEY_PRESS_SURFACE_TOTAL];
+SDL_Surface* gCurrentSurface =NULL;
+
+SDL_Surface* loadSurface(std::string path);
+
+
 bool init(){
     bool good = true;
     if(SDL_Init(SDL_INIT_VIDEO)<0){
         std::cout<<"ERROR: Failed to initialize SDL  " << SDL_GetError()<<"\n";
-        good = false;
+        good = false    ;
 
     }else{
         //Create Window
@@ -35,14 +54,38 @@ void close(){
     SDL_Quit();
 }
 
+SDL_Surface* loadSurface(std::string path){
+    SDL_Surface* loadedSurface=SDL_LoadBMP(path.c_str());
+    if(loadedSurface==NULL){
+        std::cout<<"Error loading"<<SDL_GetError()<<"\n";
+    }
+    return loadedSurface;
+}
+
+
 bool loadMedia(){
     bool ok = true;
-    gHelloWorld=SDL_LoadBMP("./hello_world.bmp");
-    if(gHelloWorld==NULL){
-        std::cout<<"ERROR: Failed to load "<<SDL_GetError()<<"\n";
-        ok = false;
-    }else{
-        std::cout<<"Loaded successfully "<<'\n';
+    gKeyPressedSurfaces[KEY_PRESS_SURFACE_UP]= loadSurface("./assets/up.bmp");
+    if(gKeyPressedSurfaces[KEY_PRESS_SURFACE_UP]==NULL){
+        ok=false;
+    }
+    gKeyPressedSurfaces[KEY_PRESS_SURFACE_DOWN]= loadSurface("./assets/down.bmp");
+    if(gKeyPressedSurfaces[KEY_PRESS_SURFACE_DOWN]==NULL){
+        ok=false;
+    }
+    gKeyPressedSurfaces[KEY_PRESS_SURFACE_RIGHT]= loadSurface("./assets/right.bmp");
+        if(gKeyPressedSurfaces[KEY_PRESS_SURFACE_RIGHT]==NULL){
+        ok=false;
+    }
+       gKeyPressedSurfaces[KEY_PRESS_SURFACE_LEFT]= loadSurface("./assests/left.bmp"); 
+        if(gKeyPressedSurfaces[KEY_PRESS_SURFACE_LEFT]==NULL){
+        ok=false;
+
+    }
+    gKeyPressedSurfaces[KEY_PRESS_SURFACE_DEFAULT]= loadSurface("./assets/press.bmp"); 
+    if(gKeyPressedSurfaces[KEY_PRESS_SURFACE_DEFAULT]==NULL){
+        ok=false;
+
     }
     return ok;
 }
@@ -53,12 +96,41 @@ int main(){
     SDL_Surface* screenSurface=NULL;
     bool Init = init();
     if(Init){
-       bool loadMed = loadMedia();
-       if(loadMed){
-        SDL_BlitSurface(gHelloWorld,NULL,screenSurface,NULL);
-        SDL_UpdateWindowSurface(window); //
-        SDL_Event e; bool quit = false; while( quit == false ){ while( SDL_PollEvent( &e ) ){ if( e.type == SDL_QUIT ) quit = true; } }
-     }
+        if(loadMedia()){
+
+            bool quit =false;
+            SDL_Event e;
+            gCurrentSurface=gKeyPressedSurfaces[KEY_PRESS_SURFACE_DEFAULT];
+            while(!quit){
+                while(SDL_PollEvent(&e)!=0){
+                    if(e.type==SDL_QUIT){
+                        quit = true;
+                    } else if(e.type == SDL_KEYDOWN){
+                        switch(e.key.keysym.sym){
+                            case SDLK_UP: 
+                            gCurrentSurface=gKeyPressedSurfaces[KEY_PRESS_SURFACE_UP];
+                            break;
+                            case SDLK_DOWN:
+                            gCurrentSurface=gKeyPressedSurfaces[KEY_PRESS_SURFACE_DOWN];
+                            break;
+                            case SDLK_RIGHT:
+                            gCurrentSurface = gKeyPressedSurfaces[KEY_PRESS_SURFACE_RIGHT];
+                            break;
+                            case SDLK_LEFT:
+                            gCurrentSurface=gKeyPressedSurfaces[KEY_PRESS_SURFACE_LEFT];
+                            break;
+                            default:
+                            gCurrentSurface = gKeyPressedSurfaces[KEY_PRESS_SURFACE_DEFAULT];
+                            break;
+                        }
+                    }
+                }
+            }
+
+            SDL_BlitSurface(gCurrentSurface,NULL,screenSurface,NULL);
+            SDL_UpdateWindowSurface(window);
+
+        }
     }
     close();
     return 0;
