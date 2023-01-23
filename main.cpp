@@ -65,24 +65,24 @@ SDL_Surface* loadSurface(std::string path){
 
 bool loadMedia(){
     bool ok = true;
-    gKeyPressedSurfaces[KEY_PRESS_SURFACE_UP]= loadSurface("./assets/up.bmp");
+    gKeyPressedSurfaces[KEY_PRESS_SURFACE_UP]= loadSurface("up.bmp");
     if(gKeyPressedSurfaces[KEY_PRESS_SURFACE_UP]==NULL){
         ok=false;
     }
-    gKeyPressedSurfaces[KEY_PRESS_SURFACE_DOWN]= loadSurface("./assets/down.bmp");
+    gKeyPressedSurfaces[KEY_PRESS_SURFACE_DOWN]= loadSurface("down.bmp");
     if(gKeyPressedSurfaces[KEY_PRESS_SURFACE_DOWN]==NULL){
         ok=false;
     }
-    gKeyPressedSurfaces[KEY_PRESS_SURFACE_RIGHT]= loadSurface("./assets/right.bmp");
+    gKeyPressedSurfaces[KEY_PRESS_SURFACE_RIGHT]= loadSurface("right.bmp");
         if(gKeyPressedSurfaces[KEY_PRESS_SURFACE_RIGHT]==NULL){
         ok=false;
     }
-       gKeyPressedSurfaces[KEY_PRESS_SURFACE_LEFT]= loadSurface("./assests/left.bmp"); 
+       gKeyPressedSurfaces[KEY_PRESS_SURFACE_LEFT]= loadSurface("left.bmp"); 
         if(gKeyPressedSurfaces[KEY_PRESS_SURFACE_LEFT]==NULL){
         ok=false;
 
     }
-    gKeyPressedSurfaces[KEY_PRESS_SURFACE_DEFAULT]= loadSurface("./assets/press.bmp"); 
+    gKeyPressedSurfaces[KEY_PRESS_SURFACE_DEFAULT]= loadSurface("press.bmp"); 
     if(gKeyPressedSurfaces[KEY_PRESS_SURFACE_DEFAULT]==NULL){
         ok=false;
 
