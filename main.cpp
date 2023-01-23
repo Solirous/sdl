@@ -92,8 +92,6 @@ bool loadMedia(){
 
 
 int main(){
-    SDL_Window* window=NULL;
-    SDL_Surface* screenSurface=NULL;
     bool Init = init();
     if(Init){
         if(loadMedia()){
