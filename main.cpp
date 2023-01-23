@@ -124,7 +124,7 @@ int main(){
                     }
                 }
             SDL_Rect sr = {0,0,32,32};
-            SDL_BlitSurface(gCurrentSurface,&sr,gCurrentSurface,&sr);
+            SDL_BlitSurface(gCurrentSurface,NULL,screenSurface,NULL);
             SDL_UpdateWindowSurface(window);
             }
 
