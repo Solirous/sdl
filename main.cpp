@@ -125,10 +125,10 @@ int main(){
                         }
                     }
                 }
+            SDL_BlitSurface(gCurrentSurface,NULL,gCurrentSurface,NULL);
+            SDL_UpdateWindowSurface(window);
             }
 
-            SDL_BlitSurface(gCurrentSurface,NULL,screenSurface,NULL);
-            SDL_UpdateWindowSurface(window);
 
         }
     }
