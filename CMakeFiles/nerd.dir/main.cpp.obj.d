@@ -255,4 +255,6 @@ CMakeFiles/nerd.dir/main.cpp.obj: \
  C:\Users\Phuongtoe\OneDrive\Desktop\code\realsdl\SDL/include/SDL2/SDL_timer.h \
  C:\Users\Phuongtoe\OneDrive\Desktop\code\realsdl\SDL/include/SDL2/SDL_version.h \
  C:\Users\Phuongtoe\OneDrive\Desktop\code\realsdl\SDL/include/SDL2/SDL_locale.h \
- C:\Users\Phuongtoe\OneDrive\Desktop\code\realsdl\SDL/include/SDL2/SDL_misc.h
+ C:\Users\Phuongtoe\OneDrive\Desktop\code\realsdl\SDL/include/SDL2/SDL_misc.h \
+ C:\Users\Phuongtoe\OneDrive\Desktop\code\realsdl\SDL/include/SDL2/SDL_Image.h \
+ C:\Users\Phuongtoe\OneDrive\Desktop\code\realsdl\SDL/include/SDL2/SDL.h

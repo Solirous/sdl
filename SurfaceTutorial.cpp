@@ -56,10 +56,18 @@ void close(){
 
 SDL_Surface* loadSurface(std::string path){
     SDL_Surface* loadedSurface=SDL_LoadBMP(path.c_str());
+    SDL_Surface* OptimizedSurface =NULL;
+
     if(loadedSurface==NULL){
         std::cout<<"Error loading"<<SDL_GetError()<<"\n";
+    }else{
+        OptimizedSurface=  SDL_ConvertSurface(loadedSurface,screenSurface->format,0);
+        if (OptimizedSurface==NULL){
+            std::cout<<"Error"<<SDL_GetError()<<__LINE__<<"\n";
+        }
+        SDL_FreeSurface(loadedSurface);
     }
-    return loadedSurface;
+    return OptimizedSurface;;
 }
 
 
